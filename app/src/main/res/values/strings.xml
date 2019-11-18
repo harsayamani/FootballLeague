@@ -1,0 +1,41 @@
+<resources>
+    <string name="app_name">Football League</string>
+
+    <string-array name="league_name">
+        <item>American Mayor League</item>
+        <item>Australian A League</item>
+        <item>English league one</item>
+        <item>English premier league</item>
+        <item>French Ligue 1</item>
+        <item>German Bundesliga</item>
+        <item>Portugeuese Premier Liga</item>
+        <item>Scotish Premier League</item>
+        <item>Spanish La Liga</item>
+    </string-array>
+
+    <array name="league_logo">
+        <item>@drawable/american_mayor_league</item>
+        <item>@drawable/australian_a_league</item>
+        <item>@drawable/english_league_1</item>
+        <item>@drawable/english_premier_league</item>
+        <item>@drawable/french_ligue_1</item>
+        <item>@drawable/german_bundesliga</item>
+        <item>@drawable/portugeuese_premiera_liga</item>
+        <item>@drawable/scotish_premier_league</item>
+        <item>@drawable/spanish_la_liga</item>
+    </array>
+
+    <string-array name="league_desc">
+        <item>Major League Soccer (MLS) is a mens professional soccer league sanctioned by the United States Soccer Federation which represents the sports highest level in the United States.</item>
+        <item>The A-League is a professional mens soccer league, run by Football Federation Australia (FFA). At the top of the Australian league system, it is the countrys primary competition for the sport. The A-League was established in 2004 as a successor to the National Soccer League (NSL) and competition commenced in August 2005. The league is currently contested by ten teams; nine based in Australia and one based in New Zealand. It is known as the Hyundai A-League (HAL) through a sponsorship arrangement with the Hyundai Motor Company.</item>
+        <item>Football League One (often referred to as League One for short or Sky Bet League 1) is the second-highest division of the Football League and the third tier in the English football league system.</item>
+        <item>The Premier League (often referred to as the English Premier League (EPL) outside England), is the top level of the English football league system. Contested by 20 clubs, it operates on a system of promotion and relegation with the English Football League (EFL).</item>
+        <item>Ligue 1 is the French professional league for association football clubs. It is the countrys primary football competition and serves as the top division of the French football league system. Ligue 1 is one of two divisions making up the Ligue de Football Professionnel, the other being Ligue 2. Contested by 20 clubs, it operates on a system of promotion and relegation with Ligue 2. Seasons run from August to May, with teams playing 38 games each totaling 380 games in the season. Most games are played on Saturdays and Sundays, with a few games played during weekday evenings. Play is regularly suspended the last weekend before Christmas for two weeks before returning in the second week of January.</item>
+        <item>The Fußball Bundesliga is a professional association football league in Germany and the football league with the highest average stadium attendance worldwide. At the top of the German football league system, the Bundesliga is Germanys primary football competition. The Bundesliga is contested by 18 teams and operates on a system of promotion and relegation with the 2. Bundesliga. Seasons run from August to May. Most games are played on Saturdays and Sundays, with a few games played during weekdays. All of the Bundesliga clubs qualify for the DFB Pokal. The winner of the Bundesliga qualifies for the DFL Supercup.</item>
+        <item>The Primeira Liga is the top professional association football division of the Portuguese football league system.</item>
+        <item>The Scottish Premiership is the top division of the Scottish Professional Football League, the league competition for professional football clubs in Scotland. The Scottish Premiership was established in July 2013, after the Scottish Professional Football League was formed by a merger of the Scottish Premier League and Scottish Football League. Teams receive three points for a win and one point for a draw. No points are awarded for a loss. Teams are ranked by total points, then goal difference, and then goals scored. At the end of each season, the club with the most points is crowned league champion. If points are equal, the goal difference and then goals scored determine the winner.</item>
+        <item>The Primera División, commonly known as La Liga and as La Liga Santander for sponsorship reasons, is the top professional association football division of the Spanish football league system. Administrated by the Liga de Fútbol Profesional (LFP), La Liga is contested by 20 teams, with the three lowest-placed teams relegated to the Segunda División and replaced by the top two teams in that division plus the winner of a play-off.</item>
+    </string-array>
+
+
+</resources>
