@@ -6,7 +6,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.mobile.harsoft.clubsdefootball.ankolayout.LeagueUI
-import com.mobile.harsoft.clubsdefootball.dataclass.League
+import com.mobile.harsoft.clubsdefootball.model.League
 import com.squareup.picasso.Picasso
 import kotlinx.android.extensions.LayoutContainer
 import org.jetbrains.anko.AnkoContext
@@ -33,12 +33,12 @@ class LeagueAdapter(
 
         fun bindItem(leagues: League, listener: (League) -> Unit) {
 
-            val league_logo = itemView.findViewById<ImageView>(LeagueUI.id_logo)
-            val league_name = itemView.findViewById<TextView>(LeagueUI.id_name)
+            val leagueLogo = itemView.findViewById<ImageView>(LeagueUI.id_logo)
+            val leagueName = itemView.findViewById<TextView>(LeagueUI.id_name)
 
-            league_name.text = leagues.league_name
+            leagueName.text = leagues.league_name
             leagues.league_logo?.let {
-                Picasso.get().load(it).fit().into(league_logo)
+                Picasso.get().load(it).fit().into(leagueLogo)
             }
             itemView.setOnClickListener {
                 listener(leagues)

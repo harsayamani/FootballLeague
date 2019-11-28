@@ -10,9 +10,9 @@ import org.jetbrains.anko.constraint.layout.constraintLayout
 class LeagueUI : AnkoComponent<ViewGroup> {
 
     companion object {
-        val id_name = 1
-        val id_logo = 2
-        val id_line = 3
+        const val id_name = 1
+        const val id_logo = 2
+        const val id_line = 3
     }
 
     override fun createView(ui: AnkoContext<ViewGroup>) = with(ui) {

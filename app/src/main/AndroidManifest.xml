@@ -3,16 +3,26 @@
     xmlns:tools="http://schemas.android.com/tools"
     package="com.mobile.harsoft.clubsdefootball">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+
     <application
         android:allowBackup="true"
-        android:icon="@mipmap/ic_launcher"
+        android:icon="@drawable/logo_soccer"
         android:label="@string/app_name"
-        android:roundIcon="@mipmap/ic_launcher_round"
+        android:roundIcon="@drawable/logo_soccer"
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-        <activity android:name=".DetailLeagueActivity"
-            android:parentActivityName=".MainActivity"/>
+        <activity android:name=".DetailPrevMatchActivity"
+            android:theme="@style/AppTheme2"/>
+        <activity android:name=".DetailNextMatchActivity"
+            android:theme="@style/AppTheme2"/>
+        <activity android:name=".MatchScheduleActivity"
+            android:parentActivityName=".MainActivity"
+            android:label="Match Schedule"/>
+        <activity
+            android:name=".DetailLeagueActivity"
+            android:parentActivityName=".MainActivity" />
         <activity android:name=".MainActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
