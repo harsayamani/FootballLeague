@@ -1,6 +1,5 @@
 package com.mobile.harsoft.clubsdefootball.fragments
 
-
 import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
@@ -44,11 +43,13 @@ class PreviousMatchFragment : BaseFragment() {
 
         val idLeague = activity.idLeague
 
-        alert_prev.invisible()
+        alert.invisible()
 
         ApiRepository().api().getPrevMatch(idLeague)?.enqueue(object : Callback<Events?> {
             override fun onFailure(call: Call<Events?>, t: Throwable) {
-                progress_bar.invisible()
+                if(progress_bar != null) {
+                    progress_bar.invisible()
+                }
                 Toast.makeText(context, t.toString(), Toast.LENGTH_LONG).show()
             }
 
@@ -66,7 +67,10 @@ class PreviousMatchFragment : BaseFragment() {
                         }
                     prev_match_recycler.adapter = adapter
                     adapter?.notifyDataSetChanged()
-                    progress_bar.invisible()
+
+                    if(progress_bar != null) {
+                        progress_bar.invisible()
+                    }
 
                     swipe.onRefresh {
                         prev_match_recycler.layoutManager = LinearLayoutManager(context)
@@ -75,8 +79,10 @@ class PreviousMatchFragment : BaseFragment() {
                         swipe.isRefreshing = false
                     }
                 } catch (e: Exception) {
-                    progress_bar.invisible()
-                    alert_prev.visible()
+                    if(progress_bar != null) {
+                        progress_bar.invisible()
+                    }
+                    alert.visible()
                 }
             }
         })
