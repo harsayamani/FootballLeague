@@ -25,7 +25,7 @@ class NextMatchAdapter(
     override fun getItemCount(): Int = nextMatch.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bindItem(nextMatch[position], listener)
+        holder.bindItem(nextMatch[holder.adapterPosition], listener)
     }
 
     class ViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView),

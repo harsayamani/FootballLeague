@@ -5,10 +5,10 @@ import androidx.fragment.app.Fragment
 import com.mobile.harsoft.clubsdefootball.MatchScheduleActivity
 
 abstract class BaseFragment : Fragment() {
-    lateinit var ACTIVITY: MatchScheduleActivity
+    lateinit var activity: MatchScheduleActivity
 
     override fun onAttach(context: Context) {
         super.onAttach(context)
-        ACTIVITY = context as MatchScheduleActivity
+        activity = context as MatchScheduleActivity
     }
 }

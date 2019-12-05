@@ -17,6 +17,8 @@ import com.mobile.harsoft.clubsdefootball.model.Events
 import com.mobile.harsoft.clubsdefootball.util.invisible
 import com.mobile.harsoft.clubsdefootball.util.visible
 import kotlinx.android.synthetic.main.fragment_next_match.*
+import kotlinx.android.synthetic.main.fragment_next_match.progress_bar
+import kotlinx.android.synthetic.main.fragment_next_match.swipe
 import org.jetbrains.anko.support.v4.onRefresh
 import retrofit2.Call
 import retrofit2.Callback
@@ -25,9 +27,7 @@ import retrofit2.Response
 /**
  * A simple [Fragment] subclass.
  */
-@Suppress("UNCHECKED_CAST")
 class NextMatchFragment : BaseFragment() {
-
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -43,10 +43,10 @@ class NextMatchFragment : BaseFragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        val idLeague = ACTIVITY.idLeague
+        val idLeague = activity.idLeague
 
         alert.invisible()
-        progress_bar.visible()
+
         ApiRepository().api().getNextMatch(idLeague)?.enqueue(object : Callback<Events?> {
             override fun onFailure(call: Call<Events?>, t: Throwable) {
                 progress_bar.invisible()
@@ -56,14 +56,16 @@ class NextMatchFragment : BaseFragment() {
             override fun onResponse(call: Call<Events?>, response: Response<Events?>) {
                 val data = response.body()
 
-                try{
+                try {
                     next_match_recycler.layoutManager = LinearLayoutManager(context)
                     val adapter =
-                        context?.let { NextMatchAdapter(requireContext(), data?.events!!) {
-                            val intent = Intent(context, DetailNextMatchActivity::class.java)
-                            intent.putExtra("match_detail", it)
-                            startActivity(intent)
-                        } }
+                        context?.let {
+                            NextMatchAdapter(requireContext(), data?.events!!) {
+                                val intent = Intent(context, DetailNextMatchActivity::class.java)
+                                intent.putExtra("match_detail", it)
+                                startActivity(intent)
+                            }
+                        }
                     next_match_recycler.adapter = adapter
                     adapter?.notifyDataSetChanged()
                     progress_bar.invisible()
@@ -74,7 +76,7 @@ class NextMatchFragment : BaseFragment() {
                         adapter?.notifyDataSetChanged()
                         swipe.isRefreshing = false
                     }
-                }catch (e: Exception) {
+                } catch (e: Exception) {
                     progress_bar.invisible()
                     alert.visible()
                 }

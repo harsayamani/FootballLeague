@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:id="@+id/relative2"
     tools:context=".DetailNextMatchActivity">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -19,7 +20,7 @@
             android:layout_marginTop="20dp"
             android:background="@color/colorPrimary"
             android:padding="10dp"
-            android:text="Loading"
+            android:text="@string/loading"
             android:textAlignment="center"
             android:textColor="#fff"
             android:textSize="20sp"
@@ -69,7 +70,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="Loading"
+            android:text="@string/loading"
             android:textColor="#fff"
             android:textSize="17sp"
             app:layout_constraintBottom_toBottomOf="parent"
@@ -82,7 +83,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="20dp"
-            android:text="Loading"
+            android:text="@string/loading"
             android:textColor="#fff"
             android:textSize="17sp"
             app:layout_constraintBottom_toTopOf="@+id/vs"
@@ -92,7 +93,6 @@
     </androidx.constraintlayout.widget.ConstraintLayout>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:id="@+id/constraint2"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_below="@+id/constraint1"
@@ -141,5 +141,4 @@
         android:layout_height="wrap_content"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true" />
-
 </RelativeLayout>

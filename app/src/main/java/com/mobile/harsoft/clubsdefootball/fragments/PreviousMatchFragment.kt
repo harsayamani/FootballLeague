@@ -16,14 +16,13 @@ import com.mobile.harsoft.clubsdefootball.api.ApiRepository
 import com.mobile.harsoft.clubsdefootball.model.Events
 import com.mobile.harsoft.clubsdefootball.util.invisible
 import com.mobile.harsoft.clubsdefootball.util.visible
-import kotlinx.android.synthetic.main.fragment_next_match.progress_bar
-import kotlinx.android.synthetic.main.fragment_next_match.swipe
 import kotlinx.android.synthetic.main.fragment_previous_match.*
+import kotlinx.android.synthetic.main.fragment_previous_match.progress_bar
+import kotlinx.android.synthetic.main.fragment_previous_match.swipe
 import org.jetbrains.anko.support.v4.onRefresh
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-
 
 /**
  * A simple [Fragment] subclass.
@@ -42,14 +41,10 @@ class PreviousMatchFragment : BaseFragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
-        initData()
-    }
 
-    private fun initData() {
-        val idLeague = ACTIVITY.idLeague
+        val idLeague = activity.idLeague
 
         alert_prev.invisible()
-        progress_bar.visible()
 
         ApiRepository().api().getPrevMatch(idLeague)?.enqueue(object : Callback<Events?> {
             override fun onFailure(call: Call<Events?>, t: Throwable) {
@@ -86,6 +81,4 @@ class PreviousMatchFragment : BaseFragment() {
             }
         })
     }
-
-
 }

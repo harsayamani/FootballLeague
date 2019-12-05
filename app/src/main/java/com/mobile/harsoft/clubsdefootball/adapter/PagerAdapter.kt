@@ -3,6 +3,7 @@ package com.mobile.harsoft.clubsdefootball.adapter
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+import com.mobile.harsoft.clubsdefootball.fragments.FavoriteFragment
 import com.mobile.harsoft.clubsdefootball.fragments.NextMatchFragment
 import com.mobile.harsoft.clubsdefootball.fragments.PreviousMatchFragment
 
@@ -10,7 +11,8 @@ class PagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm, BEHAVIOR_RESU
 
     private val pages = listOf(
         PreviousMatchFragment(),
-        NextMatchFragment()
+        NextMatchFragment(),
+        FavoriteFragment()
     )
 
     override fun getItem(position: Int): Fragment {
@@ -24,7 +26,8 @@ class PagerAdapter(fm: FragmentManager) : FragmentPagerAdapter(fm, BEHAVIOR_RESU
     override fun getPageTitle(position: Int): CharSequence? {
         return when (position) {
             0 -> "Previous Match"
-            else -> "Next Match"
+            1 -> "Next Match"
+            else -> "Favorite Match"
         }
     }
 }

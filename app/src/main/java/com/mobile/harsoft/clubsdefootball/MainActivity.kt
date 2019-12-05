@@ -1,6 +1,5 @@
 package com.mobile.harsoft.clubsdefootball
 
-import android.annotation.SuppressLint
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -55,7 +54,6 @@ class MainActivity : AppCompatActivity() {
         }
     }
 
-    @SuppressLint("Recycle")
     private fun initLeagueData() {
         val leagueName = resources.getStringArray(R.array.league_name)
         val leagueLogo = resources.obtainTypedArray(R.array.league_logo)
@@ -109,7 +107,6 @@ class MainActivity : AppCompatActivity() {
                     Toast.makeText(context, t.toString(), Toast.LENGTH_LONG).show()
                 }
 
-                @SuppressLint("ShowToast")
                 override fun onResponse(call: Call<Search?>, response: Response<Search?>) {
                     val data = response.body()
                     try {
@@ -131,8 +128,6 @@ class MainActivity : AppCompatActivity() {
                                 recycler.adapter = adapter
                             }
                         }
-
-
                     } catch (e: Exception) {
                         Toast.makeText(
                             context,

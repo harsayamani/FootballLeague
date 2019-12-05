@@ -11,6 +11,7 @@ data class Match(
     val strLeague: String?,
     val strSeason: String?,
     val strSport: String?,
+    val idLeague: String?,
     val strDescription: String?,
     val strHomeTeam: String?,
     val strAwayTeam: String?,

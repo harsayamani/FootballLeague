@@ -27,7 +27,7 @@ class PrevMatchAdapter(
     override fun getItemCount(): Int = prevMatch.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bindItem(prevMatch[position], listener)
+        holder.bindItem(prevMatch[holder.adapterPosition], listener)
     }
 
     class ViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView),

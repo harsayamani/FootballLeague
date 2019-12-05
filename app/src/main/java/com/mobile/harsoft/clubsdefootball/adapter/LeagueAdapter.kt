@@ -19,7 +19,7 @@ class LeagueAdapter(
     override fun getItemCount(): Int = leagues.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        holder.bindItem(leagues[position], listener)
+        holder.bindItem(leagues[holder.adapterPosition], listener)
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int) = ViewHolder(

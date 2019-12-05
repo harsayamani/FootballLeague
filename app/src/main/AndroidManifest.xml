@@ -14,9 +14,11 @@
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
         <activity android:name=".DetailPrevMatchActivity"
-            android:theme="@style/AppTheme2"/>
+            android:theme="@style/AppTheme"
+            android:label="Match Detail"/>
         <activity android:name=".DetailNextMatchActivity"
-            android:theme="@style/AppTheme2"/>
+            android:theme="@style/AppTheme"
+            android:label="Match Detail"/>
         <activity android:name=".MatchScheduleActivity"
             android:parentActivityName=".MainActivity"
             android:label="Match Schedule"/>

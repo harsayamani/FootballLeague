@@ -16,7 +16,7 @@ class DetailLeagueActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         val leagueItem = intent.getParcelableExtra<League>(MainActivity.PARCELABLE_ITEM_LEAGUE)
-        DetailLeagueActivityUI(leagueItem).setContentView(this)
+        DetailLeagueActivityUI(leagueItem!!).setContentView(this)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = leagueItem.league_name
     }
@@ -76,6 +76,9 @@ class DetailLeagueActivity : AppCompatActivity() {
                             onClick {
                                 intent = Intent(context, MatchScheduleActivity::class.java)
                                 intent.putExtra("league_id", leagues.league_id)
+                                intent.putExtra("league_name", leagues.league_name)
+                                intent.putExtra("league_desc", leagues.league_desc)
+                                intent.putExtra("league_logo", leagues.league_logo)
                                 startActivity(intent)
                             }
                             padding = dip(10)
