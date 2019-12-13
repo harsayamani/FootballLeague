@@ -1,7 +1,6 @@
 package com.mobile.harsoft.clubsdefootball.model
 
 class Favorite {
-
     companion object {
         const val TABLE_FAVORITE = "TABLE_FAVORITE"
         const val EVENT_ID = "EVENT_ID"
@@ -18,6 +17,5 @@ class Favorite {
         const val AWAY_SCORED = "AWAY_SCORED"
         const val EVENT_DATE = "EVENT_DATE"
         const val EVENT_TIME = "EVENT_TIME"
-
     }
 }

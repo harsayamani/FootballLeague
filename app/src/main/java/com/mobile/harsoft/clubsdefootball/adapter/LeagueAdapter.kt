@@ -5,15 +5,15 @@ import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
+import com.bumptech.glide.Glide
 import com.mobile.harsoft.clubsdefootball.ankolayout.LeagueUI
-import com.mobile.harsoft.clubsdefootball.model.League
-import com.squareup.picasso.Picasso
+import com.mobile.harsoft.clubsdefootball.model.LeagueLocal
 import kotlinx.android.extensions.LayoutContainer
 import org.jetbrains.anko.AnkoContext
 
 class LeagueAdapter(
-    private val leagues: List<League>,
-    private val listener: (League) -> Unit
+    private val leagues: List<LeagueLocal>,
+    private val listener: (LeagueLocal) -> Unit
 ) :
     RecyclerView.Adapter<LeagueAdapter.ViewHolder>() {
     override fun getItemCount(): Int = leagues.size
@@ -31,15 +31,16 @@ class LeagueAdapter(
     class ViewHolder(override val containerView: View) : RecyclerView.ViewHolder(containerView),
         LayoutContainer {
 
-        fun bindItem(leagues: League, listener: (League) -> Unit) {
+        fun bindItem(leagues: LeagueLocal, listener: (LeagueLocal) -> Unit) {
 
             val leagueLogo = itemView.findViewById<ImageView>(LeagueUI.id_logo)
             val leagueName = itemView.findViewById<TextView>(LeagueUI.id_name)
-
             leagueName.text = leagues.league_name
-            leagues.league_logo?.let {
-                Picasso.get().load(it).fit().into(leagueLogo)
-            }
+
+            Glide.with(itemView)
+                .load(leagues.league_logo)
+                .into(leagueLogo)
+
             itemView.setOnClickListener {
                 listener(leagues)
             }

@@ -5,28 +5,29 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.gson.Gson
 import com.mobile.harsoft.clubsdefootball.DetailPrevMatchActivity
 import com.mobile.harsoft.clubsdefootball.R
 import com.mobile.harsoft.clubsdefootball.adapter.PrevMatchAdapter
-import com.mobile.harsoft.clubsdefootball.api.ApiRepository
-import com.mobile.harsoft.clubsdefootball.model.Events
+import com.mobile.harsoft.clubsdefootball.api.ApiRepo
+import com.mobile.harsoft.clubsdefootball.model.Match
+import com.mobile.harsoft.clubsdefootball.presenter.PreviousMatchPresenter
 import com.mobile.harsoft.clubsdefootball.util.invisible
 import com.mobile.harsoft.clubsdefootball.util.visible
+import com.mobile.harsoft.clubsdefootball.view.MatchView
 import kotlinx.android.synthetic.main.fragment_previous_match.*
-import kotlinx.android.synthetic.main.fragment_previous_match.progress_bar
-import kotlinx.android.synthetic.main.fragment_previous_match.swipe
 import org.jetbrains.anko.support.v4.onRefresh
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 /**
  * A simple [Fragment] subclass.
  */
-class PreviousMatchFragment : BaseFragment() {
+class PreviousMatchFragment : BaseFragment(), MatchView {
+
+    private var matches: MutableList<Match> = mutableListOf()
+    private lateinit var presenter: PreviousMatchPresenter
+    private lateinit var adapter: PrevMatchAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,49 +43,48 @@ class PreviousMatchFragment : BaseFragment() {
         super.onViewCreated(view, savedInstanceState)
 
         val idLeague = activity.idLeague
+        val request = ApiRepo()
+        val gson = Gson()
 
+        presenter = PreviousMatchPresenter(this, request, gson)
+        presenter.getPrevMatch(idLeague)
+
+        prev_match_recycler.layoutManager = LinearLayoutManager(context)
+
+        adapter = PrevMatchAdapter(requireContext(), matches) {
+            val intent = Intent(context, DetailPrevMatchActivity::class.java)
+            intent.putExtra("match_detail", it)
+            startActivity(intent)
+        }
+
+        prev_match_recycler.adapter = adapter
+
+        swipe.onRefresh {
+            presenter.getPrevMatch(idLeague)
+            swipe.isRefreshing = false
+        }
+    }
+
+    override fun showAlert() {
+        alert.visible()
+    }
+
+    override fun hideAlert() {
         alert.invisible()
+    }
 
-        ApiRepository().api().getPrevMatch(idLeague)?.enqueue(object : Callback<Events?> {
-            override fun onFailure(call: Call<Events?>, t: Throwable) {
-                if(progress_bar != null) {
-                    progress_bar.invisible()
-                }
-                Toast.makeText(context, t.toString(), Toast.LENGTH_LONG).show()
-            }
+    override fun showLoading() {
+        progress_bar.visible()
+    }
 
-            override fun onResponse(call: Call<Events?>, response: Response<Events?>) {
-                val data = response.body()
-                try {
-                    prev_match_recycler.layoutManager = LinearLayoutManager(context)
-                    val adapter =
-                        context?.let {
-                            PrevMatchAdapter(requireContext(), data?.events!!) {
-                                val intent = Intent(context, DetailPrevMatchActivity::class.java)
-                                intent.putExtra("match_detail", it)
-                                startActivity(intent)
-                            }
-                        }
-                    prev_match_recycler.adapter = adapter
-                    adapter?.notifyDataSetChanged()
+    override fun hideLoading() {
+        progress_bar.invisible()
+    }
 
-                    if(progress_bar != null) {
-                        progress_bar.invisible()
-                    }
-
-                    swipe.onRefresh {
-                        prev_match_recycler.layoutManager = LinearLayoutManager(context)
-                        prev_match_recycler.adapter = adapter
-                        adapter?.notifyDataSetChanged()
-                        swipe.isRefreshing = false
-                    }
-                } catch (e: Exception) {
-                    if(progress_bar != null) {
-                        progress_bar.invisible()
-                    }
-                    alert.visible()
-                }
-            }
-        })
+    override fun matchData(data: List<Match>) {
+        swipe.isRefreshing = false
+        matches.clear()
+        matches.addAll(data)
+        adapter.notifyDataSetChanged()
     }
 }

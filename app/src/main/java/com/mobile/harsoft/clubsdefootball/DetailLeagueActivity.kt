@@ -5,29 +5,49 @@ import android.graphics.Color
 import android.graphics.Typeface
 import android.os.Bundle
 import android.view.View
+import android.widget.TextView
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
 import com.bumptech.glide.Glide
+import com.google.gson.Gson
+import com.mobile.harsoft.clubsdefootball.api.ApiRepo
 import com.mobile.harsoft.clubsdefootball.model.League
+import com.mobile.harsoft.clubsdefootball.model.LeagueLocal
+import com.mobile.harsoft.clubsdefootball.presenter.DetailLeaguePresenter
+import com.mobile.harsoft.clubsdefootball.view.LeagueView
 import org.jetbrains.anko.*
 import org.jetbrains.anko.sdk25.coroutines.onClick
 
-class DetailLeagueActivity : AppCompatActivity() {
+class DetailLeagueActivity : AppCompatActivity(), LeagueView {
+
+    private lateinit var presenter: DetailLeaguePresenter
+
+    companion object {
+        private const val idView = 1
+        private const val idLogo = 2
+        private const val idName = 3
+        private const val idDesc = 4
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        val leagueItem = intent.getParcelableExtra<League>(MainActivity.PARCELABLE_ITEM_LEAGUE)
+        val leagueItem = intent.getParcelableExtra<LeagueLocal>("league_detail")
         DetailLeagueActivityUI(leagueItem!!).setContentView(this)
+        initLeagueData(leagueItem)
         supportActionBar?.setDisplayHomeAsUpEnabled(true)
         supportActionBar?.title = leagueItem.league_name
     }
 
-    inner class DetailLeagueActivityUI(private val leagues: League) :
-        AnkoComponent<DetailLeagueActivity> {
+    private fun initLeagueData(leagueItem: LeagueLocal) {
+        val request = ApiRepo()
+        val gson = Gson()
 
-        private val idView = 1
-        private val idLogo = 2
-        private val idName = 3
-        private val idDesc = 4
+        presenter = DetailLeaguePresenter(this, request, gson)
+        presenter.getDetailLeague(leagueItem.league_id)
+    }
+
+    inner class DetailLeagueActivityUI(private val leagues: LeagueLocal) :
+        AnkoComponent<DetailLeagueActivity> {
 
         override fun createView(ui: AnkoContext<DetailLeagueActivity>) =
             with(ui) {
@@ -45,6 +65,7 @@ class DetailLeagueActivity : AppCompatActivity() {
                             Glide.with(this)
                                 .load(leagues.league_logo)
                                 .into(this)
+
                         }.lparams(dip(100), dip(100)) {
                             centerHorizontally()
                             topMargin = dip(100)
@@ -52,7 +73,6 @@ class DetailLeagueActivity : AppCompatActivity() {
 
                         textView {
                             id = idName
-                            text = leagues.league_name
                             textSize = 24f
                             setTypeface(null, Typeface.BOLD)
                         }.lparams {
@@ -63,7 +83,6 @@ class DetailLeagueActivity : AppCompatActivity() {
                         textView {
                             id = idDesc
                             padding = dip(16)
-                            text = leagues.league_desc
                             textAlignment = View.TEXT_ALIGNMENT_CENTER
                         }.lparams {
                             below(idName)
@@ -90,5 +109,17 @@ class DetailLeagueActivity : AppCompatActivity() {
                     }
                 }
             }
+    }
+
+    override fun leagueData(data: List<League?>) {
+        val leagueName = findViewById<TextView>(idName)
+        val leagueDesc = findViewById<TextView>(idDesc)
+
+        leagueName.text = data.first()?.strLeague
+        leagueDesc.text = data.first()?.strDescriptionEN
+    }
+
+    override fun showAlert() {
+        Toast.makeText(this, "Nothing to Show!", Toast.LENGTH_LONG).show()
     }
 }

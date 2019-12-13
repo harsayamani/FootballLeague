@@ -8,8 +8,8 @@ import kotlinx.android.synthetic.main.activity_match_schedule.*
 
 class MatchScheduleActivity : AppCompatActivity() {
 
-    var idLeague = ""
-    var logoLeague = 0
+    lateinit var idLeague : String
+    var logoLeague : Int = 0
     val context: Context = this
 
     override fun onCreate(savedInstanceState: Bundle?) {
