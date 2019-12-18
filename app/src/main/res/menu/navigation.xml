@@ -2,11 +2,16 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android">
     <item
         android:id="@+id/league"
-        android:icon="@drawable/ic_home_white_24dp"
+        android:icon="@drawable/ic_directions_run_white_24dp"
         android:title="@string/league" />
 
     <item
         android:id="@+id/search"
         android:icon="@drawable/ic_search_white_24dp"
         android:title="@string/search" />
+
+    <item
+        android:id="@+id/favorite"
+        android:icon="@drawable/ic_star_white_24dp"
+        android:title="@string/favorite" />
 </menu>

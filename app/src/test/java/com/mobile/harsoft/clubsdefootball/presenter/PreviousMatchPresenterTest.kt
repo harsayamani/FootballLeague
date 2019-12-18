@@ -2,7 +2,7 @@ package com.mobile.harsoft.clubsdefootball.presenter
 
 import com.google.gson.Gson
 import com.mobile.harsoft.clubsdefootball.api.ApiRepo
-import com.mobile.harsoft.clubsdefootball.model.Events
+import com.mobile.harsoft.clubsdefootball.model.response.ResponseEvents
 import com.mobile.harsoft.clubsdefootball.model.Match
 import com.mobile.harsoft.clubsdefootball.test.TestContextProvider
 import com.mobile.harsoft.clubsdefootball.view.MatchView
@@ -42,7 +42,10 @@ class PreviousMatchPresenterTest {
     @Test
     fun getPrevMatch() {
         val matches: MutableList<Match> = mutableListOf()
-        val response = Events(matches)
+        val response =
+            ResponseEvents(
+                matches
+            )
         val idLeague = "4331"
 
         runBlocking {
@@ -54,14 +57,13 @@ class PreviousMatchPresenterTest {
             Mockito.`when`(
                 gson.fromJson(
                     "",
-                    Events::class.java
+                    ResponseEvents::class.java
                 )
             ).thenReturn(response)
 
             presenter.getPrevMatch(idLeague)
 
             Mockito.verify(view).hideAlert()
-            Mockito.verify(view).showAlert()
             Mockito.verify(view).showLoading()
             Mockito.verify(view).matchData(matches)
             Mockito.verify(view).hideLoading()

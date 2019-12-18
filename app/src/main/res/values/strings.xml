@@ -55,7 +55,7 @@
     <string name="vs">VS</string>
     <string name="score">:</string>
     <string name="nol">0</string>
-    <string name="doesnt_match_showing">Doesn\'t match showing!</string>
+    <string name="nothing_to_show">Nothing to show</string>
     <string name="goal_scored">Goal Scored</string>
     <string name="search">Search</string>
     <string name="favorite">Favorite</string>
@@ -65,6 +65,21 @@
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="league">League</string>
-
+    <string name="no">No</string>
+    <string name="club">Club</string>
+    <string name="p">P</string>
+    <string name="w">W</string>
+    <string name="d">D</string>
+    <string name="l">L</string>
+    <string name="gf">GF</string>
+    <string name="ga">GA</string>
+    <string name="gd">GD</string>
+    <string name="total">Total</string>
+    <string name="team">Team</string>
+    <string name="description">Description</string>
+    <string name="country">Country</string>
+    <string name="stadium">Stadium</string>
+    <string name="stadium_location">Stadium Location</string>
+    <string name="stadium_capacity">Stadium Capacity</string>
 
 </resources>

@@ -3,13 +3,13 @@ package com.mobile.harsoft.clubsdefootball
 import android.content.Context
 import android.os.Bundle
 import androidx.appcompat.app.AppCompatActivity
-import com.mobile.harsoft.clubsdefootball.adapter.PagerAdapter
+import com.mobile.harsoft.clubsdefootball.adapter.pager.PagerAdapter
 import kotlinx.android.synthetic.main.activity_match_schedule.*
 
 class MatchScheduleActivity : AppCompatActivity() {
 
-    lateinit var idLeague : String
-    var logoLeague : Int = 0
+    var idLeague: String? = null
+    private var logoLeague: Int = 0
     val context: Context = this
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -21,7 +21,6 @@ class MatchScheduleActivity : AppCompatActivity() {
 
         matchPager()
         logoInit(logoLeague)
-
     }
 
     private fun logoInit(logoLeague: Int?) {
@@ -29,7 +28,10 @@ class MatchScheduleActivity : AppCompatActivity() {
     }
 
     private fun matchPager() {
-        vp_match_schedule.adapter = PagerAdapter(supportFragmentManager)
+        vp_match_schedule.adapter =
+            PagerAdapter(
+                supportFragmentManager
+            )
         tabs_main.setupWithViewPager(vp_match_schedule)
     }
 }

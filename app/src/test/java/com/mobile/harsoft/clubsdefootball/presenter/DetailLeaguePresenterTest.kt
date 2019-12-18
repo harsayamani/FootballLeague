@@ -3,7 +3,7 @@ package com.mobile.harsoft.clubsdefootball.presenter
 import com.google.gson.Gson
 import com.mobile.harsoft.clubsdefootball.api.ApiRepo
 import com.mobile.harsoft.clubsdefootball.model.League
-import com.mobile.harsoft.clubsdefootball.model.Leagues
+import com.mobile.harsoft.clubsdefootball.model.response.ResponseLeagues
 import com.mobile.harsoft.clubsdefootball.test.TestContextProvider
 import com.mobile.harsoft.clubsdefootball.view.LeagueView
 import kotlinx.coroutines.Deferred
@@ -43,7 +43,10 @@ class DetailLeaguePresenterTest {
     @Test
     fun getDetailLeague() {
         val leagues: MutableList<League> = mutableListOf()
-        val response = Leagues(leagues)
+        val response =
+            ResponseLeagues(
+                leagues
+            )
         val idLeague = "4346"
 
         runBlocking {
@@ -55,7 +58,7 @@ class DetailLeaguePresenterTest {
             Mockito.`when`(
                 gson.fromJson(
                     "",
-                    Leagues::class.java
+                    ResponseLeagues::class.java
                 )
             ).thenReturn(response)
 

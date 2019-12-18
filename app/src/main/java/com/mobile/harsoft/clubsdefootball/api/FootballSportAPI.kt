@@ -27,4 +27,20 @@ object FootballSportAPI {
         return BuildConfig.BASE + "api/v1/json/${BuildConfig.TSDB_API_KEY}" + "/lookupleague.php?id=" + idLeague
     }
 
+    fun getAllTeams(idLeague: String?): String {
+        return BuildConfig.BASE + "api/v1/json/${BuildConfig.TSDB_API_KEY}" + "/lookup_all_teams.php?id=" + idLeague
+    }
+
+    fun getDetailTeam(idTeam: String?): String {
+        return BuildConfig.BASE + "api/v1/json/${BuildConfig.TSDB_API_KEY}" + "/lookupteam.php?id=" + idTeam
+    }
+
+    fun getKlasemen(idLeague: String?): String {
+        return BuildConfig.BASE + "api/v1/json/${BuildConfig.TSDB_API_KEY}" + "/lookuptable.php?l=" + idLeague
+    }
+
+    fun getPlayersTeam(team: String?): String {
+        return BuildConfig.BASE + "api/v1/json/${BuildConfig.TSDB_API_KEY}" + "/searchplayers.php?t=" + team
+    }
+
 }

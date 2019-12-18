@@ -16,6 +16,7 @@ class LeagueAdapter(
     private val listener: (LeagueLocal) -> Unit
 ) :
     RecyclerView.Adapter<LeagueAdapter.ViewHolder>() {
+
     override fun getItemCount(): Int = leagues.size
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {

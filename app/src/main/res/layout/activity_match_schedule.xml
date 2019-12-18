@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -24,7 +25,16 @@
             android:id="@+id/tabs_main"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_gravity="top" />
+            android:layout_gravity="top"
+            android:background="@drawable/tab_layout_background"
+            android:theme="@style/AppTheme"
+            app:tabBackground="@drawable/tab_layout_selector"
+            app:tabIndicatorHeight="0dp"
+            app:tabMode="fixed"
+            app:tabRippleColor="@null"
+            app:tabSelectedTextColor="#2196F3"
+            app:tabTextAppearance="@style/TabTextAppearance"
+            app:tabTextColor="#fff" />
     </androidx.viewpager.widget.ViewPager>
 
 </RelativeLayout>

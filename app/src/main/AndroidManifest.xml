@@ -13,15 +13,21 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="AllowBackup,GoogleAppIndexingWarning">
-        <activity android:name=".DetailPrevMatchActivity"
-            android:theme="@style/AppTheme"
-            android:label="Match Detail"/>
-        <activity android:name=".DetailNextMatchActivity"
-            android:theme="@style/AppTheme"
-            android:label="Match Detail"/>
-        <activity android:name=".MatchScheduleActivity"
-            android:parentActivityName=".MainActivity"
-            android:label="Match Schedule"/>
+        <activity android:name=".DetailPlayerActivity"></activity>
+        <activity android:name=".DetailTeamActivity" />
+        <activity android:name=".TeamActivity" />
+        <activity
+            android:name=".DetailPrevMatchActivity"
+            android:label="Match Detail"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".DetailNextMatchActivity"
+            android:label="Match Detail"
+            android:theme="@style/AppTheme" />
+        <activity
+            android:name=".MatchScheduleActivity"
+            android:label="Match Schedule"
+            android:parentActivityName=".MainActivity" />
         <activity
             android:name=".DetailLeagueActivity"
             android:parentActivityName=".MainActivity" />

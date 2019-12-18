@@ -3,19 +3,29 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".fragments.FavoriteFragment">
 
     <!-- TODO: Update blank fragment layout -->
-    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
-        android:id="@+id/swipe"
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/vp_favorite"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/favorite_recycler"
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/tabs_main"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            tools:listitem="@layout/item_next_match" />
-    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+            android:layout_gravity="top"
+            android:background="@color/colorPrimary"
+            android:theme="@style/AppTheme"
+            app:tabBackground="@color/colorPrimary"
+            app:tabIndicatorHeight="0dp"
+            app:tabMode="fixed"
+            app:tabRippleColor="@null"
+            app:tabSelectedTextColor="#FFEB3B"
+            app:tabTextAppearance="@style/TabTextAppearance"
+            app:tabTextColor="#fff"/>
+    </androidx.viewpager.widget.ViewPager>
 
 </RelativeLayout>

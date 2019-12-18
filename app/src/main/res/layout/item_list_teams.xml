@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_marginStart="10dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginEnd="10dp"
+    android:layout_marginBottom="5dp"
+    android:background="#8BC34A">
+
+    <ImageView
+        android:id="@+id/team_badge"
+        android:layout_width="80dp"
+        android:layout_height="80dp"
+        android:layout_margin="20dp"
+        android:src="@color/colorPrimary"
+        android:contentDescription="@string/todo"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/team_name"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_margin="20dp"
+        android:text="@string/loading"
+        android:textAllCaps="true"
+        android:textColor="#fff"
+        android:textSize="20sp"
+        app:layout_constraintStart_toEndOf="@id/team_badge"
+        app:layout_constraintTop_toTopOf="parent"/>
+
+    <TextView
+        android:id="@+id/team_league"
+        android:layout_width="170dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="10dp"
+        android:text="@string/loading"
+        android:textColor="#fff"
+        app:layout_constraintStart_toEndOf="@+id/team_badge"
+        app:layout_constraintTop_toBottomOf="@id/team_name" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>

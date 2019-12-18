@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".fragments.SearchMatchFragment">
+    tools:context=".fragments.match.SearchMatchFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <androidx.appcompat.widget.SearchView
@@ -35,6 +35,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
-        android:text="@string/doesnt_match_showing"
+        android:text="@string/nothing_to_show"
         android:textSize="20sp" />
 </RelativeLayout>

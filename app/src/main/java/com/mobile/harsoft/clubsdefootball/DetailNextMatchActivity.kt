@@ -14,9 +14,9 @@ import com.google.gson.Gson
 import com.mobile.harsoft.clubsdefootball.api.ApiRepo
 import com.mobile.harsoft.clubsdefootball.api.FootballSportAPI
 import com.mobile.harsoft.clubsdefootball.database.database
-import com.mobile.harsoft.clubsdefootball.model.Favorite
+import com.mobile.harsoft.clubsdefootball.model.FavoriteMatch
 import com.mobile.harsoft.clubsdefootball.model.Match
-import com.mobile.harsoft.clubsdefootball.model.Teams
+import com.mobile.harsoft.clubsdefootball.model.response.ResponseTeams
 import com.mobile.harsoft.clubsdefootball.presenter.DetailMatchPresenter
 import com.mobile.harsoft.clubsdefootball.util.invisible
 import com.mobile.harsoft.clubsdefootball.util.visible
@@ -37,7 +37,6 @@ class DetailNextMatchActivity : AppCompatActivity(), MatchView {
     private var isFavorite: Boolean = false
     private lateinit var presenter: DetailMatchPresenter
 
-
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_next_match)
@@ -47,7 +46,7 @@ class DetailNextMatchActivity : AppCompatActivity(), MatchView {
     }
 
     override fun onCreateOptionsMenu(menu: Menu?): Boolean {
-        menuInflater.inflate(R.menu.favorite_match, menu)
+        menuInflater.inflate(R.menu.favorite, menu)
         menuItem = menu
         setFavorite()
         return true
@@ -90,32 +89,16 @@ class DetailNextMatchActivity : AppCompatActivity(), MatchView {
             val gson = Gson()
             val data = gson.fromJson(
                 request.doRequestAsync(FootballSportAPI.getTeams(team)).await(),
-                Teams::class.java
+                ResponseTeams::class.java
             )
 
-            val badge = data.teams?.first()?.strTeamBadge.toString()
+            val badge = data.teams.first().strTeamBadge.toString()
 
             Glide.with(applicationContext)
                 .load(badge)
                 .centerCrop()
                 .into(teamBadge)
         }
-
-
-//        ApiRepository().api().getTeam(team)?.enqueue(object : Callback<Teams?> {
-//            override fun onFailure(call: Call<Teams?>, t: Throwable) {
-//                Toast.makeText(context, t.toString(), Toast.LENGTH_LONG).show()
-//            }
-//
-//            override fun onResponse(call: Call<Teams?>, response: Response<Teams?>) {
-//                val data = response.body()
-//                val badge = data?.teams?.first()?.strTeamBadge.toString()
-//                Glide.with(applicationContext)
-//                    .load(badge)
-//                    .centerCrop()
-//                    .into(teamBadge)
-//            }
-//        })
     }
 
     private fun addToFavorite() {
@@ -124,21 +107,21 @@ class DetailNextMatchActivity : AppCompatActivity(), MatchView {
 
             database.use {
                 insert(
-                    Favorite.TABLE_FAVORITE,
-                    Favorite.EVENT_ID to matchItem?.idEvent,
-                    Favorite.EVENT_NAME to matchItem?.strEvent,
-                    Favorite.EVENT_DATE to matchItem?.dateEvent,
-                    Favorite.EVENT_TIME to matchItem?.strTime,
-                    Favorite.HOME_TEAM to matchItem?.strHomeTeam,
-                    Favorite.HOME_SCORED to matchItem?.intHomeScore,
-                    Favorite.AWAY_TEAM to matchItem?.strAwayTeam,
-                    Favorite.AWAY_SCORED to matchItem?.intAwayScore,
-                    Favorite.SEASON to matchItem?.strSeason,
-                    Favorite.LEAGUE to matchItem?.strLeague,
-                    Favorite.EVENT_FILE to matchItem?.strFileName,
-                    Favorite.DESCRIPTION to matchItem?.strDescription,
-                    Favorite.SPORT to matchItem?.strSport,
-                    Favorite.ID_LEAGUE to matchItem?.idLeague
+                    FavoriteMatch.TABLE_FAVORITE,
+                    FavoriteMatch.EVENT_ID to matchItem?.idEvent,
+                    FavoriteMatch.EVENT_NAME to matchItem?.strEvent,
+                    FavoriteMatch.EVENT_DATE to matchItem?.dateEvent,
+                    FavoriteMatch.EVENT_TIME to matchItem?.strTime,
+                    FavoriteMatch.HOME_TEAM to matchItem?.strHomeTeam,
+                    FavoriteMatch.HOME_SCORED to matchItem?.intHomeScore,
+                    FavoriteMatch.AWAY_TEAM to matchItem?.strAwayTeam,
+                    FavoriteMatch.AWAY_SCORED to matchItem?.intAwayScore,
+                    FavoriteMatch.SEASON to matchItem?.strSeason,
+                    FavoriteMatch.LEAGUE to matchItem?.strLeague,
+                    FavoriteMatch.EVENT_FILE to matchItem?.strFileName,
+                    FavoriteMatch.DESCRIPTION to matchItem?.strDescription,
+                    FavoriteMatch.SPORT to matchItem?.strSport,
+                    FavoriteMatch.ID_LEAGUE to matchItem?.idLeague
                 )
             }
             relative2.snackbar("Add to Favorite").show()
@@ -151,7 +134,7 @@ class DetailNextMatchActivity : AppCompatActivity(), MatchView {
         try {
             database.use {
                 delete(
-                    Favorite.TABLE_FAVORITE,
+                    FavoriteMatch.TABLE_FAVORITE,
                     "(EVENT_ID={id})",
                     "id" to idEvent.toString()
                 )
@@ -173,7 +156,7 @@ class DetailNextMatchActivity : AppCompatActivity(), MatchView {
 
     private fun favoriteState(idEvent: String?) {
         database.use {
-            val result = select(Favorite.TABLE_FAVORITE)
+            val result = select(FavoriteMatch.TABLE_FAVORITE)
                 .whereArgs("(EVENT_ID = {id})", "id" to idEvent.toString())
             val favorite = result.parseList(classParser<Match>())
             if (favorite.isNotEmpty()) isFavorite = true
